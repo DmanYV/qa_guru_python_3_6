@@ -10,12 +10,6 @@ resources_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resou
 archive_path = os.path.join(resources_path, 'archived.zip')
 
 
-# delete zip
-def test_archive_deleted():
-    os.remove(archive_path)
-    assert len(os.listdir(resources_path)) == 0
-
-
 # archived files
 def test_archived_files():
     with zipfile.ZipFile(archive_path, mode='w') as zip_file:
@@ -62,3 +56,8 @@ def test_read_xlsx():
         sheet = workbook.active
         assert sheet.cell(row=4, column=2).value == 'Ivan'
         os.remove('xlsx_file.xlsx')
+
+# delete zip
+def test_archive_deleted():
+    os.remove(archive_path)
+    assert len(os.listdir(resources_path)) == 0
